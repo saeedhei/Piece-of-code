@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<style> 
+
+html, body {
+	 background: #e3e3d8;
+	 font-family: sans-serif;
+	 /* padding: 25px; */
+	 overflow: hidden;
+}
+
+ .wrapper .container {
+	 width: 100%;
+	 height: 100%;
+}
+
+ .wrapper .inside {
+	 z-index: 9;
+	 background: #92879b;
+	 width: 140px;
+	 height: 140px;
+	 position: absolute;
+	 bottom: -70px;
+	 right: -70px;
+	 border-radius: 200px 200px 0px 0px;
+	 transition: all 0.5s, border-radius 2s, top 1s;
+	 overflow: hidden;
+}
+ .wrapper .inside .icon {
+	 position: absolute;
+	 right: 85px;
+	 bottom: 85px;
+	 color: white;
+	 opacity: 1;
+}
+ .wrapper .inside:hover {
+	 width: 100%;
+	 right: 0;
+	 bottom: 0;
+	 border-radius: 0;
+	 height: 100%;
+}
+ .wrapper .inside:hover .icon {
+	 opacity: 0;
+	 right: 15px;
+	 bottom: 15px;
+}
+ .wrapper .inside:hover .contents {
+	 opacity: 1;
+	 transform: scale(1);
+	 transform: translateY(0);
+}
+ .wrapper .inside .contents {
+	 padding: 5%;
+	 opacity: 0;
+	 transform: scale(0.5);
+	 transform: translateY(-200%);
+	 transition: opacity 0.2s, transform 0.8s;
+}
+ .wrapper .inside .contents table {
+	 text-align: left;
+	 width: 100%;
+}
+ .wrapper .inside .contents h1, .wrapper .inside .contents p, .wrapper .inside .contents table {
+	 color: white;
+}
+ .wrapper .inside .contents p {
+	 font-size: 13px;
+}
+ 
+
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <div class="inside">
+    <div class="icon"><i class="material-icons">X</i></div>
+      <div class="contents">
+      <table>
+        <tr>
+          <th>Width</th>
+          <th>Height</th>
+        </tr>
+        <tr>
+          <td>3000mm</td>
+          <td>4000mm</td>
+        </tr>
+        <tr>
+          <th>Something</th>
+          <th>Something</th>
+        </tr>
+        <tr>
+          <td>200mm</td>
+          <td>200mm</td>
+        </tr>
+        <tr>
+          <th>Something</th>
+          <th>Something</th>
+        </tr>
+        <tr>
+          <td>200mm</td>
+          <td>200mm</td>
+        </tr>
+        <tr>
+          <th>Something</th>
+          <th>Something</th>
+        </tr>
+        <tr>
+          <td>200mm</td>
+          <td>200mm</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  
+</div>
+
+
+</body>
+</html>
