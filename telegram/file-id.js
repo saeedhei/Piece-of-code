@@ -1,0 +1,1 @@
+https://api.telegram.org/bot270412047:AAGqvduMyP0edTijYNyHWj37gZ6VJkDvVfA/getFile?file_id=BQADBAAgfgfgfgfgfgfgDO5h3B0RYE
