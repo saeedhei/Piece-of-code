@@ -1,0 +1,4 @@
+rsync --archive --chown=sammy:sammy ~/.ssh /home/sammy
+
+
+دستور بالا فایل های اس اس اج روت رو با یوزر سینک میکنه که برای یوزر هم بروز بشه
