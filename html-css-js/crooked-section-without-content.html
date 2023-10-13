@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Crooked Section Example</title>
+  <style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.crooked-section {
+  position: relative;
+  background-color: #333; /* Change the background color to make the skew effect visible */
+  padding: 20px 0;
+}
+
+.crooked-section:before {
+content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
+  background-color: red; /* Same as the page background color */
+}
+
+.content {
+  padding: 20px;
+}
+
+
+footer {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+}
+
+  </style>
+</head>
+<body>
+  <div class="crooked-section">
+    <div class="content">
+      <h2>Crooked Section</h2>
+    </div>
+  </div>
+
+  <footer>
+    <p>Footer content goes here.</p>
+  </footer>
+</body>
+</html>
