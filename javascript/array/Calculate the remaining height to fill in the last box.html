@@ -1,0 +1,18 @@
+ <script>
+	      // Calculate the remaining height to fill in the last box
+		  window.addEventListener('load', function () {
+        const container = document.querySelector('.container');
+        const boxes = document.querySelectorAll('.container .box');
+        const totalHeight = container.offsetHeight;
+        let boxesHeight = 0;
+
+        boxes.forEach((box) => {
+          boxesHeight += box.offsetHeight;
+        });
+
+        const lastBox = document.querySelector('.container .box:last-child');
+        const remainingHeight = totalHeight - boxesHeight;
+        lastBox.style.height = `${remainingHeight}px`;
+      });
+	  
+  </script>
