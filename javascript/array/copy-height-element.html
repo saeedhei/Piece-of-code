@@ -1,0 +1,9 @@
+ <script>
+      // Calculate and set the height of the last box in the left column
+      // to match the height of the last box1 in the right column
+      window.addEventListener('load', function () {
+        const lastBox = document.querySelector('.container .box:last-child');
+        const lastBox1Height = document.querySelector('.container2 .box1:last-child').offsetHeight;
+        lastBox.style.height = lastBox1Height + 'px';
+      });
+    </script>
