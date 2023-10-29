@@ -2,18 +2,20 @@ version: '3.9'
 
 services:
   vue:
-    image: seointro-client:client  
+    build:
+      context: .  
+      dockerfile: Dockerfile  
     container_name: seointro-client
     volumes:
       - ./dist:/usr/share/nginx/html
     ports:
-      - '8080:8080'
+      - '8081:8081'
     environment:
       - NODE_ENV=production
       - SERVER_ADDRESS=http://nodejs:8081 
 
   nginx:
-    image: nginx:focal-stable
+    image: nginx:1.24.0
     container_name: nginx
     restart: always
     healthcheck:
@@ -25,9 +27,8 @@ services:
     volumes:
       - ./ubunto/nginx.conf:/etc/nginx/conf.d/default.conf
       - /etc/letsencrypt:/etc/letsencrypt
-      # - ./ubunto/letsencrypt:/etc/letsencrypt
     ports:
       - '80:80'
       - '443:443'
     depends_on:
-      - vue  
+      - vue 
