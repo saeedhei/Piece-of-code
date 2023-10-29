@@ -6,6 +6,6 @@ COPY package*.json ./
 
 RUN npm install
 
-RUN npm run build
+COPY . .
 
-CMD [ "nginx", "-g", "daemon off;" ]
+RUN npm run build
