@@ -25,10 +25,13 @@ services:
       retries: 3
       start_period: 30s    
     volumes:
-      - ./ubunto/nginx.conf:/etc/nginx/conf.d/default.conf
-      - /etc/letsencrypt:/etc/letsencrypt
+      - ./dist:/usr/share/nginx/html
+      - ./ubunto/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      # - /etc/letsencrypt:/etc/letsencrypt ubunto\nginx\nginx.conf
+      - ./ubunto/letsencrypt:/etc/letsencrypt
     ports:
       - '80:80'
       - '443:443'
     depends_on:
-      - vue 
+      - vue   
+    command: ["nginx", "-g", "daemon off;"]   
