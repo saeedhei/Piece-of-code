@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Double Click Update</title>
+  <style>
+    .editable {
+      display: inline-block;
+      border: 1px solid #ccc;
+      padding: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="editableText" class="editable">
+    Double click me to edit
+  </div>
+
+  <input id="textInput" type="text" style="display: none;">
+  
+  <script>
+    document.getElementById('editableText').addEventListener('dblclick', function() {
+      var editableText = document.getElementById('editableText');
+      var textInput = document.getElementById('textInput');
+
+      textInput.value = editableText.innerText;
+      editableText.style.display = 'none';
+      textInput.style.display = 'inline-block';
+      textInput.focus();
+      textInput.select();
+    });
+
+    document.getElementById('textInput').addEventListener('blur', function() {
+      var editableText = document.getElementById('editableText');
+      var textInput = document.getElementById('textInput');
+      
+      editableText.innerText = textInput.value;
+      textInput.style.display = 'none';
+      editableText.style.display = 'inline-block';
+
+      // Save the text to the server
+      saveTextToServer(textInput.value);
+    });
+
+    function saveTextToServer(text) {
+      fetch('/update-text', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'text=' + encodeURIComponent(text),
+      })
+        .then((response) => {
+          if (response.ok) {
+            console.log('Text saved to server');
+          } else {
+            console.error('Error saving text to server');
+          }
+        })
+        .catch((error) => {
+          console.error('Error saving text to server:', error);
+        });
+    }
+  </script>
+</body>
+</html>
