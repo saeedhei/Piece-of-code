@@ -2,15 +2,15 @@ version: '3.9'
 
 services:
   vue-builder:
-    image: node:14 
+    image: node:lts-alpine
     container_name: vue-builder
     working_dir: /app
     volumes:
-      - .:/app # Mount your Vue.js app source code
+      - .:/app
     command: npm install && npm run build 
 
   nginx:
-    image: nginx:1.24.0
+    image: nginx:stable-alpine
     container_name: nginx
     restart: always
     healthcheck:
@@ -29,4 +29,4 @@ services:
       - '443:443'
     depends_on:
       - vue-builder  
-    command: ["nginx", "-g", "daemon off;"]   
+    command: ["nginx", "-g", "daemon off;"]  
