@@ -17,6 +17,7 @@ In modern microservices architectures, adopting patterns that enhance scalabilit
 
 ```bash
 npm install express kafka-node mongoose mysql
+```
 
 ## Conclusion
 By combining Express.js, Kafka, MongoDB, and MySQL, we've created a simple yet powerful CQRS architecture. This separation of concerns allows for optimized write and read operations, providing a scalable and maintainable foundation for modern microservices.
