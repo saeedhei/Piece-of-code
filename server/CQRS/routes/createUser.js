@@ -1,3 +1,5 @@
+// Writing to MySQL (Command Side)
+
 const express = require('express');
 const kafka = require('kafka-node');
 const mysql = require('mysql');
