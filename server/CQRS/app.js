@@ -36,7 +36,7 @@ const mysqlConnection = mysql.createConnection({
 
 mysqlConnection.connect();
 
-// Kafka consumer setup
+// Kafka Consumer for Eventual Consistency
 const Consumer = kafka.Consumer;
 const consumer = new Consumer(kafkaClient, [{ topic: 'user-created' }], { groupId: 'user-group' });
 
