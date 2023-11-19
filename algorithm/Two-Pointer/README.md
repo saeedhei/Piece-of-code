@@ -56,4 +56,4 @@ The time complexity of the provided code is **O(n)**, where n is the length of t
 
 The space complexity of the provided code is **O(1)**, which means that the amount of memory used by the algorithm remains constant and does not grow with the size of the input array. This is because the algorithm only uses a few constant-sized variables, such as `left` and `right`, to keep track of its progress.
 
-In summary, the provided code has a time complexity of **O(n)** and a space complexity of **O(1)**, indicating that it is an efficient algorithm that can handle large input arrays without consuming excessive memory.
+In summary, this code has a time complexity of **O(n)** and a space complexity of **O(1)**, indicating that it is an efficient algorithm that can handle large input arrays without consuming excessive memory.
