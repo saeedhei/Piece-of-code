@@ -46,3 +46,14 @@ console.log(`Execution time: ${executionTime} milliseconds`);
 ```
 
 In this example, the `findPairWithSum` function takes a sorted array (`arr`) and a target sum (`target`). It initializes two pointers, `left` and `right`, at the beginning and end of the array, respectively. The function then iterates through the array, adjusting the pointers based on the comparison of the current sum with the target sum. If the current sum is equal to the target, the pair is found and returned; otherwise, the pointers are adjusted accordingly. If no such pair is found, the function returns `null`.
+
+
+**Time Complexity**
+
+The time complexity of the provided code is **O(n)**, where n is the length of the input array. This is because the `while` loop iterates through the entire array in the worst case, comparing each element to its complement in the array to find a pair that sums to the target value.
+
+**Space Complexity**
+
+The space complexity of the provided code is **O(1)**, which means that the amount of memory used by the algorithm remains constant and does not grow with the size of the input array. This is because the algorithm only uses a few constant-sized variables, such as `left` and `right`, to keep track of its progress.
+
+In summary, the provided code has a time complexity of **O(n)** and a space complexity of **O(1)**, indicating that it is an efficient algorithm that can handle large input arrays without consuming excessive memory.
