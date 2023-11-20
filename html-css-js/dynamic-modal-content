@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Font Size</title>
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="editable-container" onclick="openEditModal(event)">
+        <h2 contenteditable="true" style="font-size: 14px;">template1</h2>
+        <h2 contenteditable="true" style="font-size: 16px;">template2</h2>
+        <h2 contenteditable="true" style="font-size: 18px;">template3</h2>
+        <h2 contenteditable="true" style="font-size: 20px;">template4</h2>
+    </div>
+
+
+    <!-- The Edit Modal -->
+    <!-- <div class="modal" id="editModal">
+        <div class="modal-body">
+            <label for="fontSizeInput">Font Size:</label>
+            <input type="number" id="fontSizeInput" placeholder="Enter font size" onchange="updateFontSize()">
+        </div>
+    </div> -->
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <label for="fontSizeInput">Font Size:</label>
+            <input type="number" id="fontSizeInput" placeholder="Enter font size" onchange="updateFontSize()">
+            <label for="textColorInput">Text Color:</label>
+            <input type="color" id="textColorInput" oninput="updateTextColor()">
+        </div>
+    </div>
+
+    <script>
+        let selectedH2; // Variable to store the clicked h2 element
+        var modal = document.getElementById("editModal");
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function openEditModal(event) {
+            if (event.target.tagName === 'H2') {
+                selectedH2 = event.target;
+                var currentFontSize = window.getComputedStyle(selectedH2).fontSize;
+                var currentTextColor = window.getComputedStyle(selectedH2).color;
+
+                document.getElementById('fontSizeInput').value = parseFloat(currentFontSize);
+                document.getElementById('textColorInput').value = currentTextColor;
+                
+                document.getElementById('editModal').style.display = 'block';
+            }
+        }
+
+        function updateFontSize() {
+            if (selectedH2) {
+                var newFontSize = document.getElementById('fontSizeInput').value + 'px';
+                selectedH2.style.fontSize = newFontSize;
+                closeEditModal();
+            }
+        }
+
+        function updateTextColor() {
+            if (selectedH2) {
+                var newTextColor = document.getElementById('textColorInput').value;
+                selectedH2.style.color = newTextColor;
+            }
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+            selectedH2 = null; // Reset the selectedH2 variable
+        }
+    </script>
+
+</body>
+
+</html>
