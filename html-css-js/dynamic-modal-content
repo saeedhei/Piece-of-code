@@ -39,18 +39,15 @@
             width: 80%;
             border-radius: 10px;
         }
-        h2 {
-            color:#4287f5;
-        }
     </style>
 </head>
 
 <body>
 
 
-    <h2 contenteditable="true" style="font-size: 14px; color:#4287f5;" onclick="openEditModal(event)">template1</h2>
-    <h2 contenteditable="true" style="font-size: 16px; color:#4287f5;" onclick="openEditModal(event)">template2</h2>
-    <h2 contenteditable="true" style="font-size: 18px; color:#4287f5;" onclick="openEditModal(event)">template3</h2>
+    <h2 contenteditable="true" style="font-size: 14px; color:red;" onclick="openEditModal(event)">template1</h2>
+    <h2 contenteditable="true" style="font-size: 16px; color:red;" onclick="openEditModal(event)">template2</h2>
+    <h2 contenteditable="true" style="font-size: 18px; color:red;" onclick="openEditModal(event)">template3</h2>
 
     <!-- The Edit Modal -->
     <!-- <div class="modal" id="editModal">
@@ -93,8 +90,7 @@
                 // font
                 var currentFontSize = window.getComputedStyle(selectedH2).fontSize;
                 // color
-                var computedStyle = window.getComputedStyle(selectedH2);
-                var currentTextColor = computedStyle.getPropertyValue('color');
+                var currentTextColor = window.getComputedStyle(selectedH2).color;
                 var currentTextHexColor = rgbToHex(currentTextColor);
                 function rgbToHex(rgb) {
                     // Convert RGB to HEX
