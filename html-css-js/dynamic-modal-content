@@ -39,18 +39,18 @@
             width: 80%;
             border-radius: 10px;
         }
+        h2 {
+            color:#4287f5;
+        }
     </style>
 </head>
 
 <body>
 
-    <div class="editable-container" onclick="openEditModal(event)">
-        <h2 contenteditable="true" style="font-size: 14px;">template1</h2>
-        <h2 contenteditable="true" style="font-size: 16px;">template2</h2>
-        <h2 contenteditable="true" style="font-size: 18px;">template3</h2>
-        <h2 contenteditable="true" style="font-size: 20px;">template4</h2>
-    </div>
 
+    <h2 contenteditable="true" style="font-size: 14px; color:#4287f5;" onclick="openEditModal(event)">template1</h2>
+    <h2 contenteditable="true" style="font-size: 16px; color:#4287f5;" onclick="openEditModal(event)">template2</h2>
+    <h2 contenteditable="true" style="font-size: 18px; color:#4287f5;" onclick="openEditModal(event)">template3</h2>
 
     <!-- The Edit Modal -->
     <!-- <div class="modal" id="editModal">
@@ -65,7 +65,7 @@
             <label for="fontSizeInput">Font Size:</label>
             <input type="number" id="fontSizeInput" placeholder="Enter font size" onchange="updateFontSize()">
             <label for="textColorInput">Text Color:</label>
-            <input type="color" id="textColorInput" oninput="updateTextColor()">
+            <input type="color" id="textColorInput" onchange="updateTextColor()">
         </div>
     </div>
 
@@ -90,12 +90,23 @@
         function openEditModal(event) {
             if (event.target.tagName === 'H2') {
                 selectedH2 = event.target;
+                // font
                 var currentFontSize = window.getComputedStyle(selectedH2).fontSize;
-                var currentTextColor = window.getComputedStyle(selectedH2).color;
+                // color
+                var computedStyle = window.getComputedStyle(selectedH2);
+                var currentTextColor = computedStyle.getPropertyValue('color');
+                var currentTextHexColor = rgbToHex(currentTextColor);
+                function rgbToHex(rgb) {
+                    // Convert RGB to HEX
+                    const [r, g, b] = rgb.match(/\d+/g);
+                    const hex = '#' + ((1 << 24) + (Number(r) << 16) + (Number(g) << 8) + Number(b)).toString(16).slice(1);
+                    return hex;
+                }
+                console.log(currentTextHexColor);
 
                 document.getElementById('fontSizeInput').value = parseFloat(currentFontSize);
-                document.getElementById('textColorInput').value = currentTextColor;
-                
+                document.getElementById('textColorInput').value = currentTextHexColor;
+
                 document.getElementById('editModal').style.display = 'block';
             }
         }
@@ -112,6 +123,7 @@
             if (selectedH2) {
                 var newTextColor = document.getElementById('textColorInput').value;
                 selectedH2.style.color = newTextColor;
+                closeEditModal();
             }
         }
 
