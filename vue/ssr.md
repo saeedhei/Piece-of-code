@@ -1,4 +1,4 @@
-Certainly! Below is a basic example of a Vue 3 application with three pages (Home, About, and Contact) using SSR (Server-Side Rendering). This example assumes you have a Node.js server for SSR.
+A basic example of a Vue 3 application with three pages (Home, About, and Contact) using SSR (Server-Side Rendering). This example assumes you have a Node.js server for SSR.
 
 1. **Install Dependencies:**
 
