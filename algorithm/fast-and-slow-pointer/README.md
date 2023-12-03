@@ -4,11 +4,11 @@ The fast and slow pointer algorithm in JavaScript:
 
 The fast and slow pointer algorithm, also known as "tortoise and hare algorithm" or "Floyd's cycle-finding algorithm," is a powerful technique used for detecting cycles in linked lists or sequences. This algorithm is particularly useful in scenarios where you need to find cycles efficiently.
 
-## Overview
+# Overview
 
 The algorithm involves initializing two pointers, commonly referred to as the "slow" pointer and the "fast" pointer, and then moving them through the sequence at different speeds. The goal is to detect cycles by checking whether the fast pointer eventually catches up to the slow pointer.
 
-## Implementation in JavaScript
+# Implementation in JavaScript
 
 Let's implement the fast and slow pointer algorithm in JavaScript using a linked list as an example.
 
