@@ -16,7 +16,7 @@ List of common algorithmic techniques or approaches. Here are some commonly used
 
 8. **Binary Search:** Reducing the search space in half at each step, applicable to sorted data.
 
-9. **Hashing:** Using a hash function to map data to indices, providing fast retrieval.
+9. **[Hashing:](https://github.com/saeedhei/Piece-of-code/tree/master/algorithm/hash-table)** Using a hash function to map data to indices, providing fast retrieval.
 
 10. **Breadth-First Search (BFS):** Exploring a graph level by level.
 
