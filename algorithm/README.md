@@ -10,7 +10,7 @@ List of common algorithmic techniques or approaches. Here are some commonly used
 
 5. **Backtracking:** Exploring all possible solutions and "backtracking" when you reach a solution that doesn't meet the criteria.
 
-6. **Two-Pointer Technique:** Maintaining two pointers to traverse a data structure efficiently, often used with sorted arrays or linked lists.
+6. **[Two-Pointer Technique:](https://github.com/saeedhei/Piece-of-code/tree/master/algorithm/Two-Pointer)** Maintaining two pointers to traverse a data structure efficiently, often used with sorted arrays or linked lists.
 
 7. **Sliding Window:** Maintaining a subset (window) of elements in the array or list and efficiently moving or expanding this window.
 
