@@ -68,4 +68,3 @@ This algorithm is efficient and widely used for detecting cycles in linked lists
 It's important to note that in JavaScript, you don't explicitly manage memory allocation and deallocation as you might in languages like C or C++. JavaScript has automatic memory management (garbage collection), which takes care of deallocating memory that is no longer in use.
 
 Feel free to use and adapt this JavaScript implementation for your own projects. Happy coding!
-```
