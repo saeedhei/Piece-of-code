@@ -1,6 +1,6 @@
 List of common algorithmic techniques or approaches. Here are some commonly used techniques:
 
-1. **Brute Force:** Trying all possibilities until a solution is found.
+1. **[Brute Force:](https://github.com/saeedhei/Piece-of-code/tree/master/algorithm/brute-force)** Trying all possibilities until a solution is found.
 
 2. **Divide and Conquer:** Breaking a problem down into smaller sub-problems, solving them, and combining their solutions.
 
