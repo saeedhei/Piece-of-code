@@ -40,4 +40,6 @@ List of common algorithmic techniques or approaches. Here are some commonly used
 
 20. **Kruskal's Algorithm:** Finding a minimum spanning tree for a connected, weighted graph.
 
+21. **[Fast and Slow Pointer:](https://github.com/saeedhei/Piece-of-code/tree/master/algorithm/fast-and-slow-pointer)** Finding a minimum spanning tree for a connected, weighted graph.
+
 These techniques are foundational in algorithm design, and understanding when to apply each one is crucial in solving a variety of problems efficiently.
