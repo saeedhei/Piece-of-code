@@ -1,10 +1,12 @@
 <script setup>
+import { storeToRefs } from 'pinia';
 import { useCounterStore } from '@/stores/counter'
 import { useStringStore } from '@/stores/string'
 const store = useCounterStore()
 const {increment, decrement } = store
 const stringStore = useStringStore()
 const {updateString} = stringStore
+const {string} = storeToRefs(stringStore) // to keep reactivity
 </script>
 
 <template>
@@ -17,7 +19,7 @@ const {updateString} = stringStore
   <br><br>
 
   <div> 
-    <div>{{ stringStore.string }}</div>
+    <div>{{ string }}</div>
     <button @click="updateString('Hey')">Update</button>
   </div>
 </template>
