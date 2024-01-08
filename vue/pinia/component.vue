@@ -4,12 +4,7 @@ import { useStringStore } from '@/stores/string'
 const store = useCounterStore()
 const {increment, decrement } = store
 const stringStore = useStringStore()
-
-function updateString(){
-  stringStore.string = 'Updated string'; // Update the string value
-  stringStore.updateString(stringStore.string); // Update the store value
-  stringStore.updateString("Cool");
-}
+const {updateString} = stringStore
 </script>
 
 <template>
@@ -20,7 +15,9 @@ function updateString(){
   </div>
 
   <br><br>
-  <div>{{ stringStore.string }}</div>
-  <button @click="updateString">Update</button>
 
+  <div> 
+    <div>{{ stringStore.string }}</div>
+    <button @click="updateString('Hey')">Update</button>
+  </div>
 </template>
