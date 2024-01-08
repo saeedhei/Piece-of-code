@@ -2,15 +2,8 @@
 import { useCounterStore } from '@/stores/counter'
 import { useStringStore } from '@/stores/string'
 const store = useCounterStore()
+const {increment, decrement } = store
 const stringStore = useStringStore()
-
-
-function increment(){
-  store.count++
-}
-function decrement(){
-  store.count--
-}
 
 function updateString(){
   stringStore.string = 'Updated string'; // Update the string value
