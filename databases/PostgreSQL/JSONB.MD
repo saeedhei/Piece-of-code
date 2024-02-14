@@ -21,8 +21,8 @@ CREATE INDEX idx_product_details_gin ON products USING GIN (details);
 ```
 This GIN index provides fast search capabilities for any key or value within the JSONB objects stored in the "details" column. It's suitable for a wide range of JSONB queries, including full-text search and queries involving multiple keys or values.
 
-### SELECT Statement Before Creating the Index:
-Before creating the indexes, a SELECT statement is executed to retrieve all products where the brand is "Apple":
+### SELECT Statement:
+A SELECT statement is executed to retrieve all products where the brand is "Apple":
 ```sql
 SELECT *
 FROM products
@@ -56,7 +56,7 @@ CREATE INDEX idx_product_details_brand ON products ((details->>'brand'));
 -- Create a GIN index on the entire JSONB column
 CREATE INDEX idx_product_details_gin ON products USING GIN (details);
 
--- SELECT statement before creating the index
+-- SELECT statement 
 SELECT *
 FROM products
 WHERE details->>'brand' = 'Apple';
