@@ -1,9 +1,11 @@
 {
   "recommendations": [
-    "ritwickdey.liveserver",
-    "abusaidm.html-snippets",
-    "pranaygp.vscode-css-peek",
-    "xabikos.JavaScriptSnippets",
-    "esbenp.prettier-vscode"
+    "ritwickdey.liveserver", // Live server for previewing code in browser
+    "dbaeumer.vscode-eslint", // ESLint for JavaScript linting
+    "raymondcamden.csslint", // (Optional) CSS linter
+    "pranaygp.vscode-css-peek", // Peek at CSS rules applied to an element in HTML
+    "xabikos.JavaScriptSnippets", // JavaScript code snippets
+    "Sass.sass", // (Optional) For SCSS/Sass support
+    "esbenp.prettier-vscode" // Automatic code formatting
   ]
 }
