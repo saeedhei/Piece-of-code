@@ -1,6 +1,6 @@
 ssh-keygen -b 4096
 
-goto c:/Users/YOU/.ssh/id_rsa and then
 eval `ssh-agent -s`
-ssh-add
+
+ssh-add -d ~/.ssh/id_rsa
 
