@@ -4,27 +4,36 @@ This guide will help you configure your SSH setup so that you are not repeatedly
 
 ## Steps
 
-### 1. Ensure `ssh-agent` is Running
+### 1. Create Public and Private keys
+```bash
+ssh-keygen -b 4096
+```
+
+### 2. Ensure `ssh-agent` is Running
 
 First, you need to make sure the SSH agent is running. Open a terminal and run the following command:
 
 ```bash
 eval $(ssh-agent -s)
+```
 
-### 2. Add Your SSH Key to ssh-agent
+### 3. Add Your SSH Key to ssh-agent
 
 ```bash
 ssh-add ~/.ssh/id_rsa
+```
 
-### 3. Verify the SSH Key is Added to ssh-agent
+### 4. Verify the SSH Key is Added to ssh-agent
 
 ```bash
 ssh-add -l
+```
 
-### 4. Create/Edit SSH Config File
+### 5. Create/Edit SSH Config File
 
 ```bash
 nano ~/.ssh/config
+```
 
 Add the following configuration for your VPS:
 
@@ -34,5 +43,6 @@ Host myvps
     User root
     IdentityFile ~/.ssh/id_rsa
     AddKeysToAgent yes
+```
 
 
