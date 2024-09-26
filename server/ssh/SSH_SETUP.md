@@ -46,7 +46,7 @@ Host myvps
 ```
 
 
-server
+##server
 
 ```bash
 chmod 700 ~/.ssh
