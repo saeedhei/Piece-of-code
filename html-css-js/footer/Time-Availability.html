@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frankfurt Local Time Button</title>
+    <style>
+        .time-footer {
+            font-size: 1.2em;
+            margin-top: 20px;
+            text-align: center;
+        }
+        #availability-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #availability-button.green {
+            background-color: green;
+        }
+        #availability-button.red {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="time-footer">
+        <p>Frankfurt Local Time: <span id="frankfurt-time"></span></p>
+        <button id="availability-button">Check Availability</button>
+    </div>
+
+    <script>
+        function updateTime() {
+            // Get the current time in Frankfurt timezone (Europe/Berlin)
+            const options = { timeZone: 'Europe/Berlin', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+            const frankfurtTime = new Intl.DateTimeFormat([], options).format(new Date());
+
+            // Update the time in the footer
+            document.getElementById('frankfurt-time').textContent = frankfurtTime;
+
+            // Get current hour in Frankfurt
+            const currentHour = new Date().toLocaleString("en-US", { timeZone: 'Europe/Berlin', hour: '2-digit', hour12: false });
+
+            // Get the button element
+            const button = document.getElementById('availability-button');
+
+            // Check if the time is between 08:00 and 17:00
+            if (currentHour >= 12 && currentHour < 17) {
+                button.classList.remove('red');
+                button.classList.add('green');
+                button.textContent = "We're Available!";
+            } else {
+                button.classList.remove('green');
+                button.classList.add('red');
+                button.textContent = "Sorry, we're closed!";
+            }
+        }
+
+        // Update time every second
+        setInterval(updateTime, 1000);
+    </script>
+
+</body>
+</html>
