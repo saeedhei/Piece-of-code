@@ -1,7 +1,7 @@
 ## 
 Access the authorized_keys file:
 
-bash```
+```bash
 sudo nano ~/.ssh/authorized_keys
 ```
 
@@ -11,6 +11,6 @@ Copy-Paste: Open id_rsa.pub on your local machine and copy its contents. In the 
 ###
 Set the correct permissions for authorized_keys:
 
-bash```
+```bash
 chmod 600 ~/.ssh/authorized_keys
 ```
