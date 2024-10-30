@@ -43,8 +43,7 @@ const setupProject = async () => {
     console.log("Creating TypeScript configuration...");
     const tsConfig = {
       compilerOptions: {
-        target: "es6",
-        module: "commonjs",
+        module: "NodeNext",
         rootDir: "./src",
         outDir: "./dist",
         strict: true,
@@ -76,7 +75,40 @@ const setupProject = async () => {
 
     fs.writeFileSync("src/index.ts", expressApp);
 
-    // Step 5: Add start script to package.json
+    // Step 5: Ask about linting code
+    const lintInput = await askUser("Do you want to lint your code with ESLint? (yes/no): ");
+
+    if (lintInput.toLowerCase() === 'yes') {
+      // Step 6: Install ESLint for TypeScript
+      console.log("Installing ESLint for TypeScript...");
+      runCommand("npm install eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin --save-dev");
+
+      // Step 7: Create ESLint configuration file for TypeScript
+      const eslintConfigTs = `
+      export default [
+          {
+              files: ["src/**/*.ts"],
+              ignores: ["**/*.config.js", "!**/eslint.config.js"],
+              rules: {
+                  semi: "error"
+              }
+          }
+      ];
+      `;
+      fs.writeFileSync("eslint.config.mjs", eslintConfigTs); // Changed to eslint.config.js
+
+      // Step 8: Add lint script to package.json
+      console.log("Adding lint script to package.json...");
+      const packageJson = JSON.parse(fs.readFileSync("package.json"));
+      packageJson.scripts = packageJson.scripts || {};
+      packageJson.scripts.lint = "eslint . --fix"; // Add lint script
+      fs.writeFileSync("package.json", JSON.stringify(packageJson, null, 2));
+
+    } else {
+      console.log("Skipping ESLint setup.");
+    }
+
+    // Step 9: Add start script to package.json
     console.log("Adding start script to package.json...");
     const packageJson = JSON.parse(fs.readFileSync("package.json"));
     packageJson.scripts = packageJson.scripts || {};
@@ -114,7 +146,40 @@ const setupProject = async () => {
 
     fs.writeFileSync("src/index.js", expressAppJs);
 
-    // Step 5: Add start script to package.json
+    // Step 5: Ask about linting code
+    const lintInput = await askUser("Do you want to lint your code with ESLint? (yes/no): ");
+
+    if (lintInput.toLowerCase() === 'yes') {
+      // Step 6: Install ESLint for JavaScript
+      console.log("Installing ESLint for JavaScript...");
+      runCommand("npm install eslint --save-dev");
+
+      // Step 7: Create ESLint configuration file for JavaScript
+      const eslintConfigJs = `
+      export default [
+          {
+              files: ["src/**/*.js"],
+              ignores: ["**/*.config.js", "!**/eslint.config.js"],
+              rules: {
+                  semi: "error"
+              }
+          }
+      ];
+      `;
+      fs.writeFileSync("eslint.config.js", eslintConfigJs); // Changed to eslint.config.js
+
+      // Step 8: Add lint script to package.json
+      console.log("Adding lint script to package.json...");
+      const packageJsonJs = JSON.parse(fs.readFileSync("package.json"));
+      packageJsonJs.scripts = packageJsonJs.scripts || {};
+      packageJsonJs.scripts.lint = "eslint . --fix"; // Add lint script
+      fs.writeFileSync("package.json", JSON.stringify(packageJsonJs, null, 2));
+
+    } else {
+      console.log("Skipping ESLint setup.");
+    }
+
+    // Step 9: Add start script to package.json
     console.log("Adding start script to package.json...");
     const packageJsonJs = JSON.parse(fs.readFileSync("package.json"));
     packageJsonJs.scripts = packageJsonJs.scripts || {};
