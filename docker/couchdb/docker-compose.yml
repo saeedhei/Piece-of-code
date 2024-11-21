@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  couchdb:
+    image: couchdb:3.4.2
+    container_name: my-couchdb
+    environment:
+      - COUCHDB_USER=${COUCHDB_USER}
+      - COUCHDB_PASSWORD=${COUCHDB_PASSWORD}
+    ports:
+      - "5984:5984"
+    volumes:
+      - ./couchdb-data:/opt/couchdb/data
+
+volumes:
+  couchdb-data:
+
+
+
+# docker-compose up -d
