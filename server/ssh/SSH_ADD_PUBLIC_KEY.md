@@ -11,3 +11,7 @@ Copy-Paste: Open id_rsa.pub on your local machine and copy its contents. In the 
 ```bash
 chmod 600 ~/.ssh/authorized_keys
 ```
+
+### Error writing /root/.ssh/authorized_keys: No such file or directory:
+sudo mkdir /root/.ssh
+sudo chmod 700 /root/.ssh
