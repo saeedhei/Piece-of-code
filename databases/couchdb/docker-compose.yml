@@ -1,0 +1,59 @@
+services:
+  couchdb-node0:
+    image: couchdb:3.4.2
+    container_name: couchdb0
+    restart: always
+    environment:
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=password
+      - COUCHDB_SECURITY=aaa
+      - NODENAME=couchdb-0.local.com
+      - ERL_FLAGS=-setcookie mycookie
+    ports:
+      - "5984:5984"
+      - "5986:5986"
+    volumes:
+      - ./couchdb/data-0:/opt/couchdb/data
+      - ./couchdb/config-0:/opt/couchdb/etc/local.d
+    networks:
+      isolated_nw:
+        aliases:
+          - couchdb-0.local.com
+
+  couchdb-node1:
+    image: couchdb:3.4.2
+    container_name: couchdb1
+    restart: always
+    environment:
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=password
+      - COUCHDB_SECURITY=aaa
+      - NODENAME=couchdb-1.local.com
+      - ERL_FLAGS=-setcookie mycookie
+    ports:
+      - "15984:5984"
+      - "15986:5986"
+    volumes:
+      - ./couchdb/data-1:/opt/couchdb/data
+      - ./couchdb/config-1:/opt/couchdb/etc/local.d
+    networks:
+      isolated_nw:
+        aliases:
+          - couchdb-1.local.com
+
+networks:
+  isolated_nw:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/16
+   
+
+# docker network rm isolated_nw
+# docker-compose down
+# docker-compose up -d
+
+# docker-compose up --build -d
+
+
+
