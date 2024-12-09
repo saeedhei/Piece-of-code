@@ -6,7 +6,6 @@ services:
     environment:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=password
-      - COUCHDB_SECURITY=aaa
       - NODENAME=couchdb-0.local.com
       - ERL_FLAGS=-setcookie mycookie
     ports:
@@ -27,7 +26,6 @@ services:
     environment:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=password
-      - COUCHDB_SECURITY=aaa
       - NODENAME=couchdb-1.local.com
       - ERL_FLAGS=-setcookie mycookie
     ports:
@@ -54,6 +52,8 @@ networks:
 # docker-compose up -d
 
 # docker-compose up --build -d
+
+# curl -X PUT http://admin:password@localhost:5984/_users
 
 
 
