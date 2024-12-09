@@ -28,18 +28,21 @@ bind 0.0.0.0
 docker run -itd -p 5984:5984 -p 5986:5986 --name=couchdb0 \
 -e NODENAME="couchdb-0.local.com" \
 --mount type=bind,source=$(pwd)/volume-0,target=/opt/couchdb/data \
+--mount type=bind,source=$(pwd)/config-0,target=/opt/couchdb/etc/local.d \
 -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password \
 couchdb:3.4.2
 
 docker run -itd -p 15984:5984 -p 15986:5986 --name=couchdb1 \
 -e NODENAME="couchdb-1.local.com" \
 --mount type=bind,source=$(pwd)/volume-1,target=/opt/couchdb/data \
+--mount type=bind,source=$(pwd)/config-1,target=/opt/couchdb/etc/local.d \
 -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password \
 couchdb:3.4.2
 
 docker run -itd -p 25984:5984 -p 25986:5986 --name=couchdb2 \
 -e NODENAME="couchdb-2.local.com" \
 --mount type=bind,source=$(pwd)/volume-2,target=/opt/couchdb/data \
+--mount type=bind,source=$(pwd)/config-2,target=/opt/couchdb/etc/local.d \
 -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password \
 couchdb:3.4.2
 ```
