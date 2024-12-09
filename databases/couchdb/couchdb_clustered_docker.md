@@ -23,8 +23,9 @@ bind 0.0.0.0
 
 
 ```
+# for test in windows
 docker run -itd -p 5984:5984 -p 5986:5986 --name=couchdb0 \
 -e NODENAME="couchdb-0.local.com" \
---mount type=volume,source=$(pwd)/volume-0,target=/opt/couchdb/data \
+--mount type=bind,source=$(pwd)/volume-0,target=/opt/couchdb/data \
 couchdb:2.3.0
 ```
