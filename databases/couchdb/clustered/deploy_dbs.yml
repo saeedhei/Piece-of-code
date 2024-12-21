@@ -1,0 +1,213 @@
+---
+- name: Deploy CouchDB on db servers
+  hosts: managers
+  become: true
+  vars:
+    couchdb_admin_user: admin
+    couchdb_admin_password: "password"
+  tasks:
+    # - name: Stop and remove the CouchDB container
+    #   shell: |
+    #     docker-compose -f /docker-projects/docker-couchdb/docker-compose.yml down
+    #   args:
+    #     executable: /bin/bash
+
+    # - name: Remove CouchDB data directory
+    #   file:
+    #     path: "/docker-projects/docker-couchdb/data"
+    #     state: absent
+
+    # - name: Remove CouchDB Docker Compose file
+    #   file:
+    #     path: "/docker-projects/docker-couchdb/docker-compose.yml"
+    #     state: absent
+          
+    - name: Create CouchDB data directories
+      file:
+        path: "/docker-projects/docker-couchdb/data"
+        state: directory
+        mode: '0755'
+
+    - name: Create CouchDB Docker Compose file
+      copy:
+        dest: "/docker-projects/docker-couchdb/docker-compose.yml"
+        content: |
+          services:
+            couchdb-node0:
+              image: couchdb:3.4.2
+              container_name: couchdb0
+              ports:
+                - "5984:5984"
+                - "5986:5986"
+                - "4369:4369"
+                - "9100-9200:9100-9200"
+              volumes:
+                - /docker-projects/docker-couchdb/data:/opt/couchdb/data
+                - /docker-projects/docker-couchdb/config:/opt/couchdb/etc/local.d
+              environment:
+                - COUCHDB_USER={{ couchdb_admin_user }}
+                - COUCHDB_PASSWORD={{ couchdb_admin_password }}
+                - NODENAME={{ ansible_host }}
+                - ERL_FLAGS=-setcookie mycookie
+              networks:
+                couchdb_isolated_nw:
+                  aliases:
+                    - couchdb-0
+          networks:
+            couchdb_isolated_nw:
+              driver: bridge
+
+    - name: Start CouchDB container
+      shell: |
+        docker-compose -f /docker-projects/docker-couchdb/docker-compose.yml up -d
+
+    - name: Wait for CouchDB to be ready
+      uri:
+        url: "http://{{ ansible_host }}:5984/"
+        status_code: 200
+        timeout: 30
+      register: couchdb_check
+      retries: 5
+      delay: 5
+      until: couchdb_check is succeeded
+
+# workers
+
+- name: Deploy CouchDB on db servers
+  hosts: workers
+  become: true
+  vars:
+    couchdb_admin_user: admin
+    couchdb_admin_password: "password"
+  tasks:
+    # - name: Stop and remove the CouchDB container
+    #   shell: |
+    #     docker-compose -f /docker-projects/docker-couchdb/docker-compose.yml down
+    #   args:
+    #     executable: /bin/bash
+
+    # - name: Remove CouchDB data directory
+    #   file:
+    #     path: "/docker-projects/docker-couchdb/data"
+    #     state: absent
+
+    # - name: Remove CouchDB Docker Compose file
+    #   file:
+    #     path: "/docker-projects/docker-couchdb/docker-compose.yml"
+    #     state: absent
+          
+    - name: Create CouchDB data directories
+      file:
+        path: "/docker-projects/docker-couchdb/data"
+        state: directory
+        mode: '0755'
+
+    - name: Create CouchDB Docker Compose file
+      copy:
+        dest: "/docker-projects/docker-couchdb/docker-compose.yml"
+        content: |
+          services:
+            couchdb-node1:
+              image: couchdb:3.4.2
+              container_name: couchdb1
+              ports:
+                - "5984:5984"
+                - "5986:5986"
+                - "4369:4369"
+                - "9100-9200:9100-9200"
+              volumes:
+                - /docker-projects/docker-couchdb/data:/opt/couchdb/data
+                - /docker-projects/docker-couchdb/config:/opt/couchdb/etc/local.d
+              environment:
+                - COUCHDB_USER={{ couchdb_admin_user }}
+                - COUCHDB_PASSWORD={{ couchdb_admin_password }}
+                - NODENAME={{ ansible_host }}
+                - ERL_FLAGS=-setcookie mycookie
+              networks:
+                couchdb_isolated_nw:
+                  aliases:
+                    - couchdb-1
+          networks:
+            couchdb_isolated_nw:
+              driver: bridge
+
+    - name: Start CouchDB container
+      shell: |
+        docker-compose -f /docker-projects/docker-couchdb/docker-compose.yml up -d
+
+    - name: Wait for CouchDB to be ready
+      uri:
+        url: "http://{{ ansible_host }}:5984/"
+        status_code: 200
+        timeout: 30
+      register: couchdb_check
+      retries: 5
+      delay: 5
+      until: couchdb_check is succeeded
+
+
+- name: Deploy CouchDB Configuration
+  hosts: managers
+  become: true
+  vars:
+    couchdb_admin_user: admin
+    couchdb_admin_password: "password"
+  tasks:
+    - name: Ensure CouchDB configuration directory exists
+      file:
+        path: "/docker-projects/docker-couchdb/config"
+        state: directory
+        mode: '0755'
+
+    - name: Deploy local.ini configuration
+      copy:
+        dest: "/docker-projects/docker-couchdb/config/local.ini"
+        content: |
+          [couchdb]
+          hostname = {{ inventory_hostname }}  # Using inventory hostname as couchdb-0 or couchdb-1
+
+          [httpd]
+          bind_address = 0.0.0.0  # Listen on all interfaces
+
+          [cors]
+          enable = true
+          credentials = true
+          methods = GET, PUT, POST, HEAD, DELETE
+          origins = *
+
+    - name: Restart CouchDB container using docker-compose
+      shell: |
+        docker-compose -f /docker-projects/docker-couchdb/docker-compose.yml restart couchdb-node0
+
+- name: Deploy CouchDB Configuration
+  hosts: workers
+  become: true
+  vars:
+    couchdb_admin_user: admin
+    couchdb_admin_password: "password"
+  tasks:
+    - name: Ensure CouchDB configuration directory exists
+      file:
+        path: "/docker-projects/docker-couchdb/config"
+        state: directory
+        mode: '0755'
+
+    - name: Deploy local.ini configuration
+      copy:
+        dest: "/docker-projects/docker-couchdb/config/local.ini"
+        content: |
+          [couchdb]
+          hostname = {{ inventory_hostname }}  # Using inventory hostname as couchdb-0 or couchdb-1
+
+          [httpd]
+          bind_address = 0.0.0.0  # Listen on all interfaces
+
+          [cors]
+          enable = true
+          credentials = true
+          methods = GET, PUT, POST, HEAD, DELETE
+          origins = *
+
+    - name: Restart CouchDB container using docker-compose
+      shell: |
+        docker-compose -f /docker-projects/docker-couchdb/docker-compose.yml restart couchdb-node1
