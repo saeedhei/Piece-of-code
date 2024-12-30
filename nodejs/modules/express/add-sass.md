@@ -5,6 +5,6 @@
 "scripts": {
     "start": "node .",
     "dev": "nodemon . & npm run scss",
-    "scss": "sass --watch main.scss public/stylesheets/style.css"
+    "scss": "sass --watch style.scss public/stylesheets/style.css"
 },
 ```
