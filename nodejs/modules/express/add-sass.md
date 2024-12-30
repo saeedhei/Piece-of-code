@@ -1,5 +1,5 @@
-# npm i express sass 
-# npm i nodemon --save-dev
+## npm i express sass 
+## npm i nodemon --save-dev
 
 ```
 "scripts": {
